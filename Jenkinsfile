@@ -37,7 +37,7 @@ pipeline {
        stage('Docker Run') {
             steps{
                 script {
-                sh 'docker run -d --rm --name mypythonContainer -p 8096:5000 736860399682.dkr.ecr.ap-south-1.amazonaws.com/my-docker-image:latest'
+                sh 'docker run -d --rm --name mypythonContainer --log-driver=awslogs --log-opt awslogs-region=ap-south-1 --log-opt awslogs-group="dockerlogs" --log-opt awslogs-create-group=true -p 8096:5000 736860399682.dkr.ecr.ap-south-1.amazonaws.com/my-docker-image:latest'
                 }
             }
         }
